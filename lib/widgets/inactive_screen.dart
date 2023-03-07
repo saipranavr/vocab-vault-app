@@ -1,28 +1,21 @@
 import 'package:flutter/material.dart';
 
 class BlackScreen extends StatelessWidget {
-  const BlackScreen({
-    Key? key,
-    this.onTap = false,
-  }) : super(key: key);
+  final void Function() onTap;
 
-  final bool onTap;
+  const BlackScreen({Key? key, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.black,
-      child: GestureDetector(
-        onTap: onTap
-            ? () {
-                Navigator.of(context).pop();
-              }
-            : null,
-        child: const Center(
-          child: Icon(
+      child: Center(
+        child: GestureDetector(
+          onTap: onTap,
+          child: const Icon(
             Icons.search,
             color: Colors.white,
-            size: 50.0,
+            size: 50,
           ),
         ),
       ),
