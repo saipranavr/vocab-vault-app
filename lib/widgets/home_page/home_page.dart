@@ -76,7 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
                 Expanded(
-                  child: DefinitionList(wordsData: _definitions),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: _definitions.map((wordData) {
+                        return WordDefinitionCard(wordData: wordData);
+                      }).toList(),
+                    ),
+                  ),
                 ),
               ],
             ),
