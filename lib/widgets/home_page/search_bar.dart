@@ -33,7 +33,7 @@ class _SearchBarState extends State<SearchBar> {
         ),
         onSubmitted: (query) async {
           var response = await owlBotGetAPI.searchWord(query);
-          widget.definitionsCallback(response['definitions']);
+          widget.definitionsCallback(response);
         },
       ),
     );

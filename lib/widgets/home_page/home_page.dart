@@ -36,11 +36,12 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void _startTimer() {
-    _timer = Timer(const Duration(seconds: 5), () {
+    _timer = Timer(const Duration(seconds: 25), () {
       if (!_showBlackScreen) {
         setState(() {
           _showBlackScreen = true;
         });
+        FocusManager.instance.primaryFocus?.unfocus();
       }
     });
   }
@@ -75,7 +76,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                 ),
                 Expanded(
-                  child: DefinitionList(definitions: _definitions),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: _definitions.map((wordData) {
+                        return WordDefinitionCard(wordData: wordData);
+                      }).toList(),
+                    ),
+                  ),
                 ),
               ],
             ),
