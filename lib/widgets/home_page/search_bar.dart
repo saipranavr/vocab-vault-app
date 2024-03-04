@@ -3,8 +3,9 @@ import 'package:dictionary/network/owlbot_get_api.dart';
 
 class SearchBar extends StatefulWidget {
   final Function(List<dynamic>) definitionsCallback;
+  final VoidCallback resetTimerCallback;
 
-  const SearchBar({required this.definitionsCallback});
+  const SearchBar({required this.definitionsCallback, required this.resetTimerCallback,});
 
   @override
   _SearchBarState createState() => _SearchBarState();
@@ -32,8 +33,12 @@ class _SearchBarState extends State<SearchBar> {
           contentPadding: EdgeInsets.symmetric(vertical: 8),
         ),
         onSubmitted: (query) async {
+          widget.resetTimerCallback();
           var response = await owlBotGetAPI.searchWord(query);
           widget.definitionsCallback(response);
+        },
+        onChanged: (query) {
+          widget.resetTimerCallback();
         },
       ),
     );

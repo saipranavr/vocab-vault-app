@@ -63,6 +63,9 @@ class _MyHomePageState extends State<MyHomePage> {
         onTap: () {
           _resetTimer();
         },
+        onPanUpdate: (details) {
+          _resetTimer();
+        },
         child: Stack(
           children: [
             Column(
@@ -74,12 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     });
                     _resetTimer();
                   },
+                  resetTimerCallback: _resetTimer,
                 ),
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
                       children: _definitions.map((wordData) {
-                        return WordDefinitionCard(wordData: wordData);
+                        return WordDefinitionCard(wordData: wordData, resetTimerCallback: _resetTimer);
                       }).toList(),
                     ),
                   ),
